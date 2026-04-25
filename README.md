@@ -6,50 +6,50 @@ An AI-powered web application that transforms short situations into clear profes
 
 ## 🚀 Features
 
-- 🔹 Convert raw situations into structured paragraphs
-- 🔹 Automatically extract **3 key bullet points**
-- 🔹 Clean and modern UI using Tailwind CSS
-- 🔹 Copy-to-clipboard with visual feedback
-- 🔹 Admin panel to manage AI prompt dynamically
-- 🔹 AI-powered content generation using OpenRouter API
+- 🔹 Convert raw situations into structured paragraphs  
+- 🔹 Automatically extract **3 key bullet points**  
+- 🔹 Clean and modern UI using Tailwind CSS  
+- 🔹 Copy-to-clipboard with visual feedback  
+- 🔹 Admin panel to manage AI prompt dynamically  
+- 🔹 AI-powered content generation using OpenRouter API  
 
 ---
 
 ## 🛠️ Tech Stack
 
-**Frontend**
-- HTML
-- Tailwind CSS
-- JavaScript
-- SweetAlert2
+### Frontend
+- HTML  
+- Tailwind CSS  
+- JavaScript  
+- SweetAlert2  
 
-**Backend**
-- Core PHP
+### Backend
+- Core PHP  
 
-**Database**
-- MySQL (phpMyAdmin)
+### Database
+- MySQL (phpMyAdmin)  
 
-**AI Integration**
-- OpenRouter API (LLaMA / other models)
+### AI Integration
+- OpenRouter API (LLaMA / other models)  
 
 ---
 
 ## 🔄 Project Flow (End-to-End)
 
 ### 1️⃣ User Interaction (Frontend)
-
-- The user enters a short situation (1–2 lines) in the input field.
-- When the user clicks **"Generate Improved Version"**, a JavaScript function is triggered.
-- Input validation ensures the field is not empty.
-- A loading indicator (SweetAlert) is displayed while processing.
+- The user enters a short situation (1–2 lines) in the input field.  
+- On clicking **"Generate Improved Version"**, a JavaScript function is triggered.  
+- Input validation ensures the field is not empty.  
+- A loading indicator (SweetAlert) is displayed.  
 
 ---
 
 ### 2️⃣ API Request (Frontend → Backend)
+- A **POST request** is sent to:
 
-- The frontend sends a **POST request** to:
 
-`api/generate.php`
+api/generate.php
+
 
 - Request body:
 
@@ -57,99 +57,58 @@ An AI-powered web application that transforms short situations into clear profes
 {
   "input": "User entered situation"
 }
----
-
- 
-### 3️⃣ Backend Processing (PHP)
-
-The backend receives the request and:
-
-Validates input
-Loads environment variables (.env)
-Fetches the latest prompt template from the database (prompts table)
-
-The placeholder:
-
+3️⃣ Backend Processing (PHP)
+Validates user input
+Loads environment variables from .env
+Fetches latest prompt from prompts table
+Replaces placeholder:
 {user_input}
 
-is replaced with actual user input.
+with actual input.
 
----
+4️⃣ AI Integration (External API)
+Sends processed prompt to OpenRouter API
 
- 
-### 4️⃣ AI Integration (External API)
-The processed prompt is sent to the AI model via OpenRouter API
-
-Example model used:
+Example model:
 
 meta-llama/llama-3.1-8b-instruct
-
-The AI returns:
-
+AI returns:
 A rewritten paragraph
 Exactly 3 bullet points
----
-
- 
-### 5️⃣ Response Handling (Backend → Frontend)
-
-The backend:
-
+5️⃣ Response Handling (Backend → Frontend)
 Extracts AI response
-Stores data in situations table:
+Stores in situations table:
 user_input
 ai_output
-
-Sends JSON response:
-
+Sends response:
 {
   "success": true,
   "output": "AI generated content"
 }
----
-
- 
-### 6️⃣ Output Rendering (Frontend)
-JavaScript receives the response
-The output is formatted into:
-A paragraph
-A "Key Points" section (bullet list)
-The result is displayed in a scrollable UI container
----
-
- 
-### 7️⃣ User Experience Enhancements
+6️⃣ Output Rendering (Frontend)
+JavaScript formats output into:
+Paragraph
+Key Points list
+Displays inside scrollable UI container
+7️⃣ User Experience Enhancements
 ✅ SweetAlert loading & success messages
-✅ Copy-to-clipboard button with visual feedback
+✅ Copy-to-clipboard with visual feedback
 ✅ Error handling (API / server issues)
-✅ Clean UI using Tailwind CSS
----
-
- 
-### 8️⃣ Admin Control (Prompt Management)
-
-Admin can update AI behavior via:
-
+✅ Clean responsive UI
+8️⃣ Admin Control (Prompt Management)
+Accessible via:
 /admin/prompt.php
-
-The prompt defines:
-
-Output structure
-Formatting rules
-
-This allows dynamic control without changing code.
-
----
-
- 
-### 🔁 Data Flow Summary
+Allows dynamic control of:
+Output format
+AI behavior
+🔁 Data Flow Summary
 User Input
 ⬇
-Frontend (JS Validation)
+Frontend (Validation)
 ⬇
 API Call (generate.php)
 ⬇
-Backend (PHP Processing)
+Backend Processing
 ⬇
 AI Model (OpenRouter)
 ⬇
@@ -158,34 +117,18 @@ Response Processing
 Database Storage
 ⬇
 Frontend Display
----
-
- 
-### 📊 Database Structure
+📊 Database Structure
 prompts table
 Stores AI prompt template
 situations table
-Stores:
 user_input
 ai_output
 created_at
----
-
- 
-### ⚙️ Setup Instructions
-1. Clone the project
+⚙️ Setup Instructions
+1. Clone Repository
 git clone https://github.com/your-username/ai-situation-improver.git
----
-
- 
-### Setup Database
-
-Create database:
-
+2. Setup Database
 CREATE DATABASE ai_situation_app;
-
-Create tables:
-
 CREATE TABLE prompts (
     id INT AUTO_INCREMENT PRIMARY KEY,
     prompt_text TEXT NOT NULL
@@ -197,28 +140,22 @@ CREATE TABLE situations (
     ai_output TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
----
-
- 
-###  Configure .env
+3. Configure .env
 OPENROUTER_API_KEY=your_api_key_here
 DB_HOST=localhost
 DB_NAME=ai_situation_app
 DB_USER=root
 DB_PASS=
----
-
- 
-###  Run Project
-Place project inside htdocs (XAMPP)
+4. Run Project
+Move project to htdocs (XAMPP)
 Start Apache & MySQL
 Open:
 http://localhost/ai-situation-app
-http://localhost/ai-situation-app/admin/prompt.php
----
 
- 
-### 📂 Project Structure
+Admin panel:
+
+http://localhost/ai-situation-app/admin/prompt.php
+📂 Project Structure
 ai-situation-app/
 │
 ├── api/
@@ -237,31 +174,19 @@ ai-situation-app/
 ├── .env
 ├── .gitignore
 └── README.md
----
-
- 
-### 🔒 Notes
-Do not upload .env file to GitHub
-Keep API keys secure
-Use HTTPS for clipboard features in production
----
-
- 
-### 🎯 Key Highlights
+🔒 Notes
+❗ Do not upload .env file to GitHub
+🔐 Keep API keys secure
+🌐 Use HTTPS in production (clipboard support)
+🎯 Key Highlights
 🔹 Modular architecture (Frontend + Backend + AI)
-🔹 Dynamic prompt system (no hardcoding)
+🔹 Dynamic prompt system
 🔹 Clean UI/UX with real-time feedback
-🔹 Scalable AI integration (can switch models easily)
----
-
- 
-### 👨‍💻 Author
+🔹 Scalable AI integration
+👨‍💻 Author
 
 Yogapriya Shanmugam
 
----
-
- 
-### 📜 License
+📜 License
 
 This project is for educational and personal use.
