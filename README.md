@@ -4,6 +4,36 @@ An AI-powered web application that transforms short situations into clear profes
 
 ---
 
+## 🚀 Features
+
+- 🔹 Convert raw situations into structured paragraphs
+- 🔹 Automatically extract **3 key bullet points**
+- 🔹 Clean and modern UI using Tailwind CSS
+- 🔹 Copy-to-clipboard with visual feedback
+- 🔹 Admin panel to manage AI prompt dynamically
+- 🔹 AI-powered content generation using OpenRouter API
+
+---
+
+## 🛠️ Tech Stack
+
+**Frontend**
+- HTML
+- Tailwind CSS
+- JavaScript
+- SweetAlert2
+
+**Backend**
+- Core PHP
+
+**Database**
+- MySQL (phpMyAdmin)
+
+**AI Integration**
+- OpenRouter API (LLaMA / other models)
+
+---
+
 ## 🔄 Project Flow (End-to-End)
 
 ### 1️⃣ User Interaction (Frontend)
@@ -27,4 +57,3 @@ An AI-powered web application that transforms short situations into clear profes
 {
   "input": "User entered situation"
 }
-```
