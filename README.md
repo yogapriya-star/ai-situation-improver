@@ -193,7 +193,7 @@ Frontend Display
 ### 1. Clone Repository
 
 ```bash
-git clone https://github.com/your-username/ai-situation-improver.git
+git clone https://github.com/yogapriya-star/ai-situation-improver.git
 ```
 
 ---
